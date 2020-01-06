@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly", "Assembly\Assemb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateMethodExample", "CreateMethodExample\CreateMethodExample.csproj", "{D6582482-2793-4264-B420-9867E974FD70}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReplaceMethodExample", "ReplaceMethodExample\ReplaceMethodExample.csproj", "{130FB78D-9848-4491-BCB6-78D1C0740E66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D6582482-2793-4264-B420-9867E974FD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6582482-2793-4264-B420-9867E974FD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6582482-2793-4264-B420-9867E974FD70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{130FB78D-9848-4491-BCB6-78D1C0740E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{130FB78D-9848-4491-BCB6-78D1C0740E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{130FB78D-9848-4491-BCB6-78D1C0740E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{130FB78D-9848-4491-BCB6-78D1C0740E66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

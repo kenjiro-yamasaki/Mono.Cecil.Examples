@@ -19,14 +19,21 @@ namespace Mono.Cecil
                     var module = assembly.Modules.Single(m => m.Name == "SoftCube.Assembly.exe");
                     var type   = module.Types.Single(t => t.FullName == "SoftCube.Class");
 
-                    var method = new MethodDefinition("Test", MethodAttributes.Private | MethodAttributes.Static, module.TypeSystem.Void);
-                    type.Methods.Add(method);
+                    var method = type.Methods.Single(m => m.Name == "Method");
+
+                    // 新たなメソッド (Method?) を作成し、元々のメソッド (Method) の内容を移動します。
+                    var movedMethod = new MethodDefinition(method.Name + "?", method.Attributes, method.ReturnType);
+                    movedMethod.Body = method.Body;
+                    type.Methods.Add(movedMethod);
+
+                    // 元々のメソッド (Method) の内容を、新たなメソッド (Method?) を呼び出すコードに書き換えます。
+                    method.Body = new MethodBody(method);
 
                     var processor    = method.Body.GetILProcessor();
                     var instructions = method.Body.Instructions;
 
-                    instructions.Insert(0, processor.Create(OpCodes.Ldstr, "Hello!"));
-                    instructions.Insert(1, processor.Create(OpCodes.Call, module.ImportReference(typeof(Console).GetMethod("WriteLine", new Type[] { typeof(string) }))));
+                    instructions.Insert(0, processor.Create(OpCodes.Ldarg_0));
+                    instructions.Insert(1, processor.Create(OpCodes.Call, movedMethod));
                     instructions.Add(processor.Create(OpCodes.Ret));
 
                     assembly.Write(outputAssemblyFileName, new WriterParameters() { WriteSymbols = true });
