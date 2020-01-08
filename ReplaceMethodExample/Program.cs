@@ -1,9 +1,9 @@
 ﻿using Mono.Cecil.Cil;
-using SoftCube.Log;
+using SoftCube.Logging;
 using System;
 using System.Linq;
 
-namespace Mono.Cecil
+namespace Mono.Cecil.Examples
 {
     class Program
     {

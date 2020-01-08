@@ -4,12 +4,12 @@
         <OutputType>Exe</OutputType>
         <!--<TargetFramework>netcoreapp3.1</TargetFramework>-->
         <TargetFramework>net472</TargetFramework>
-        <RootNamespace>Mono.Cecil</RootNamespace>
+        <RootNamespace>Mono.Cecil.Examples</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Mono.Cecil" Version="0.11.1" />
-        <PackageReference Include="SoftCube.Log" Version="1.0.6" />
+        <PackageReference Include="SoftCube.Logging" Version="1.0.7" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,6 +19,9 @@
     <ItemGroup>
         <None Update="Logger.config">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Logging.config">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 

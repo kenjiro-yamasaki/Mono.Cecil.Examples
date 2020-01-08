@@ -1,1 +1,1 @@
-[assembly: SoftCube.Log.Configuration(ConfigFileName = "Logger.config")]
+[assembly: SoftCube.Logging.Configuration(ConfigFileName = "Logging.config")]
