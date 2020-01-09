@@ -3,13 +3,12 @@ using SoftCube.Logging;
 using System;
 using System.Linq;
 
-namespace CreateNestedType
+namespace Mono.Cecil.Examples
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Logger.Info("Hello World!");
             try
             {
                 var inputAssemblyFileName  = "SoftCube.Assembly.exe";
@@ -20,9 +19,9 @@ namespace CreateNestedType
                     var module = assembly.Modules.Single(m => m.Name == "SoftCube.Assembly.exe");
                     var type   = module.Types.Single(t => t.FullName == "SoftCube.Class");
 
-                    var nemeSpace  = type.Namespace;
+                    var @namespace = type.Namespace;
                     var baseType   = module.TypeSystem.Object;
-                    var nestedType = new TypeDefinition(nemeSpace, "NestedClass", TypeAttributes.Class, baseType);
+                    var nestedType = new TypeDefinition(@namespace, "NestedClass", TypeAttributes.Class, baseType);
                     type.NestedTypes.Add(nestedType);
 
                     assembly.Write(outputAssemblyFileName, new WriterParameters() { WriteSymbols = true });

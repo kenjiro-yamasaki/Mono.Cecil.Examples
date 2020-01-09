@@ -25,9 +25,27 @@ namespace SoftCube
         /// </summary>
         internal void Method()
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Method");
+        }
+
+        /// <summary>
+        /// 仮想メソッドのサンプル。
+        /// </summary>
+        internal virtual void VirtualMethod()
+        {
+            Console.WriteLine("Virtual Method");
         }
 
         #endregion
     }
+
+    class DerivedClass : Class
+    {
+        internal override void VirtualMethod()
+        {
+
+            Console.WriteLine("Virtual Method (override)");
+        }
+    }
+
 }
