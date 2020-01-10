@@ -22,12 +22,11 @@ namespace Mono.Cecil.Examples
                     var method = new MethodDefinition("Test", MethodAttributes.Private | MethodAttributes.Static, module.TypeSystem.Void);
                     type.Methods.Add(method);
 
-                    var processor    = method.Body.GetILProcessor();
-                    var instructions = method.Body.Instructions;
+                    var processor = method.Body.GetILProcessor();
 
-                    instructions.Insert(0, processor.Create(OpCodes.Ldstr, "Hello!"));
-                    instructions.Insert(1, processor.Create(OpCodes.Call, module.ImportReference(typeof(Console).GetMethod("WriteLine", new Type[] { typeof(string) }))));
-                    instructions.Add(processor.Create(OpCodes.Ret));
+                    processor.Append(processor.Create(OpCodes.Ldstr, "Hello!"));
+                    processor.Append(processor.Create(OpCodes.Call, module.ImportReference(typeof(Console).GetMethod("WriteLine", new Type[] { typeof(string) }))));
+                    processor.Append(processor.Create(OpCodes.Ret));
 
                     assembly.Write(outputAssemblyFileName, new WriterParameters() { WriteSymbols = true });
                 }

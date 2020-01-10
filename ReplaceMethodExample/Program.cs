@@ -29,12 +29,10 @@ namespace Mono.Cecil.Examples
                     // 元々のメソッド (Method) の内容を、新たなメソッド (Method?) を呼び出すコードに書き換えます。
                     method.Body = new MethodBody(method);
 
-                    var processor    = method.Body.GetILProcessor();
-                    var instructions = method.Body.Instructions;
-
-                    instructions.Insert(0, processor.Create(OpCodes.Ldarg_0));
-                    instructions.Insert(1, processor.Create(OpCodes.Call, movedMethod));
-                    instructions.Add(processor.Create(OpCodes.Ret));
+                    var processor = method.Body.GetILProcessor();
+                    processor.Append(processor.Create(OpCodes.Ldarg_0));
+                    processor.Append(processor.Create(OpCodes.Call, movedMethod));
+                    processor.Append(processor.Create(OpCodes.Ret));
 
                     assembly.Write(outputAssemblyFileName, new WriterParameters() { WriteSymbols = true });
                 }

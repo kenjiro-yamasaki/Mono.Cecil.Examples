@@ -11,8 +11,6 @@ namespace Mono.Cecil.Examples
         {
             try
             {
-                Logger.Info("Hello");
-
                 var inputAssemblyFileName = "SoftCube.Assembly.exe";
                 var outputAssemblyFileName = "SoftCube.Assembly_.exe";
 
@@ -28,11 +26,10 @@ namespace Mono.Cecil.Examples
 
                     var derivedMethod = new MethodDefinition(baseMethod.Name, (baseMethod.Attributes | MethodAttributes.CheckAccessOnOverride) & ~MethodAttributes.NewSlot, baseMethod.ReturnType);
                     var processor = derivedMethod.Body.GetILProcessor();
-                    var instructions = derivedMethod.Body.Instructions;
 
-                    instructions.Insert(0, processor.Create(OpCodes.Ldstr, "Hello!"));
-                    instructions.Insert(1, processor.Create(OpCodes.Call, module.ImportReference(typeof(Console).GetMethod("WriteLine", new Type[] { typeof(string) }))));
-                    instructions.Add(processor.Create(OpCodes.Ret));
+                    processor.Append(processor.Create(OpCodes.Ldstr, "Hello!"));
+                    processor.Append(processor.Create(OpCodes.Call, module.ImportReference(typeof(Console).GetMethod("WriteLine", new Type[] { typeof(string) }))));
+                    processor.Append(processor.Create(OpCodes.Ret));
 
                     derivedClass.Methods.Add(derivedMethod);
 
